@@ -47,6 +47,13 @@ class QuoteMainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val toQuoteEditListButton = findViewById<Button>(R.id.quote_edit_btn)
+
+        toQuoteEditListButton.setOnClickListener {
+            val intent = Intent(this, QuoteEditActivity::class.java)
+            startActivity(intent)
+        }
+
         quotes = Quote.getQuotesFromPreference(pref)
 
         if (quotes.isNotEmpty()){
