@@ -3,6 +3,7 @@ package com.example.lotto
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -47,10 +48,8 @@ class LottoMainActivity : AppCompatActivity() {
         }
 
         checkResultBtn.setOnClickListener {
-            LottoNumber.saveToPreference(pref,0,"[1, 2, 3, 4, 5, 6]")
-            LottoNumber.saveToPreference(pref,0,"[11, 12, 13, 14, 15, 16]")
-            val editor =pref.edit()
-            editor.apply()
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.dhlottery.co.kr/gameResult.do?method=byWin"))
+            startActivity(intent)
         }
 
     }

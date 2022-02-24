@@ -30,5 +30,14 @@ data class LottoNumber(var idx:Int, var lottoNumber: String) {
 
             return numbers
         }
+
+        fun removeLottoNumbersFromPreference(pref: SharedPreferences, idx: Int){
+            val editor = pref.edit()
+
+            editor.remove("$idx.text")
+
+            editor.apply()
+
+        }
     }
 }
