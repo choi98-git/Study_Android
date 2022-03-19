@@ -3,6 +3,7 @@ package com.example.saveimage
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
             val button = findViewById<Button>(R.id.button)
             val image_view_saved = findViewById<ImageView>(R.id.image_view_saved)
+            val image_view_source = findViewById<ImageView>(R.id.image_view_source)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 // Check run time permission for write external storage
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 it.isEnabled = false
 
                 // Save the image to gallery and get saved image Uri
-                val uri = saveImage(R.drawable.winter, "Winter")
+                val uri = saveImage(image_view_source.drawable, "Winter")
                 ToastMessage("saved : $uri")
 
                 // Show the saved image in an image view
@@ -49,9 +51,8 @@ class MainActivity : AppCompatActivity() {
 
 
         // Method to save an image to gallery and return uri
-        private fun saveImage(drawable: Int, title: String): Uri {
+        private fun saveImage(drawable: Drawable, title: String): Uri {
             // Get the image from drawable resource as drawable object
-            val drawable = ContextCompat.getDrawable(applicationContext, drawable)
 
             // Get the bitmap from drawable object
             val bitmap = (drawable as BitmapDrawable).bitmap
@@ -68,7 +69,6 @@ class MainActivity : AppCompatActivity() {
             return Uri.parse(savedImageURL)
         }
     }
-
 
     // Extension function to show toast message
     private fun Context.ToastMessage(message: String) {
